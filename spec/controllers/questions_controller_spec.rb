@@ -45,15 +45,17 @@ RSpec.describe QuestionsController, type: :controller do
   describe "#update" do
     let!(:question) { create(:question) }
     let(:user) { question.user }
+    let(:new_attributes) { attributes_for(:question) }
 
     context "own questions" do
       it "can be updated" do
         sign_in user
-        newAttrs = attributes_for(:question)
-        put :update, params: { id: question.id, question: newAttrs }
+        put :update, params: { id: question.id, question: new_attributes }
         question.reload
-        expect(question.question).to eq(newAttrs[:question])
-        expect(question.description).to eq(newAttrs[:description])
+
+        new_attributes.each do |key, value|
+          expect(question.attributes[key.to_s]).to eq(value)
+        end
       end
 
       it "redirects to the question" do
@@ -64,21 +66,23 @@ RSpec.describe QuestionsController, type: :controller do
 
       it "cannot update with invalid params" do
         sign_in user
-        newAttrs = attributes_for(:invalid_question)
-        put :update, params: { id: question.id, question: newAttrs }
+        put :update, params: { id: question.id, question: attributes_for(:invalid_question) }
         question.reload
-        expect(question.question).not_to eq(newAttrs[:question])
-        expect(question.description).not_to eq(newAttrs[:description])
+
+        new_attributes.each do |key, value|
+          expect(question.attributes[key.to_s]).not_to eq(value)
+        end
       end
     end
 
     context "other's questions" do
       it "cannot be updated" do
-        newAttrs = attributes_for(:question)
-        put :update, params: { id: question.id, question: newAttrs }
+        put :update, params: { id: question.id, question: new_attributes }
         question.reload
-        expect(question.question).not_to eq(newAttrs[:question])
-        expect(question.description).not_to eq(newAttrs[:description])
+
+        new_attributes.each do |key, value|
+          expect(question.attributes[key.to_s]).not_to eq(value)
+        end
       end
 
       it "redirects to the question" do
