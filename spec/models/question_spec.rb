@@ -21,4 +21,9 @@ RSpec.describe Question, type: :model do
     question = create(:vote, :question_vote).content
     expect { question.destroy }.to change(Vote, :count).by(-1)
   end
+
+  it "will delete it's answers when deleted" do
+    question = create(:answer).question
+    expect { question.destroy }.to change(Answer, :count).by(-1)
+  end
 end
