@@ -5,4 +5,5 @@ Rails.application.routes.draw do
 
   resources :questions, only: [:create, :update, :destroy]
   resources :answers, only: [:create, :update, :destroy]
+  resources :comments, only: [:create, :update, :destroy]
 end
