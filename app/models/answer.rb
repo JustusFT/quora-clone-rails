@@ -7,6 +7,7 @@ class Answer < ApplicationRecord
 
   belongs_to :user
   belongs_to :question
+  has_many :comments, dependent: :destroy
   has_many :votes, as: :content, dependent: :destroy
 
   def one_answer_per_user

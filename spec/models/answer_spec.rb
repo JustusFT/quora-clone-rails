@@ -30,4 +30,9 @@ RSpec.describe Answer, type: :model do
     answer = create(:vote, :answer_vote).content
     expect { answer.destroy }.to change(Vote, :count).by(-1)
   end
+
+  it "will delete it's comments if deleted" do
+    answer = create(:comment).answer
+    expect { answer.destroy }.to change(Comment, :count).by(-1)
+  end
 end
