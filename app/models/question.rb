@@ -3,4 +3,5 @@ class Question < ApplicationRecord
   validates :question, presence: true, length: { maximum: 250 }
 
   belongs_to :user
+  has_many :answers
 end

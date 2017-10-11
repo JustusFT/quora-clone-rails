@@ -5,6 +5,10 @@ RSpec.describe Question, type: :model do
     expect(create(:question)).to be_valid
   end
 
+  it "requires a user" do
+    expect(build(:question, user_id: nil)).not_to be_valid
+  end
+
   it "requires a question" do
     expect(build(:question, question: nil)).not_to be_valid
   end

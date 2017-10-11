@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   root 'pages#home'
 
   resources :questions, only: [:create, :update, :destroy]
+  resources :answers, only: [:create, :update, :destroy]
 end
