@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe QuestionsController, type: :controller do
   describe "#create" do
-    let(:question) { build(:question) }
+    let!(:question) { build(:question) }
     let(:user) { question.user }
 
     context "when signed in" do
@@ -43,7 +43,7 @@ RSpec.describe QuestionsController, type: :controller do
   end
 
   describe "#update" do
-    let(:question) { create(:question) }
+    let!(:question) { create(:question) }
     let(:user) { question.user }
 
     context "own questions" do
@@ -89,7 +89,7 @@ RSpec.describe QuestionsController, type: :controller do
   end
 
   describe "#delete" do
-    let(:question) { create(:question) }
+    let!(:question) { create(:question) }
     let(:user) { question.user }
 
     context "own questions" do
@@ -109,14 +109,16 @@ RSpec.describe QuestionsController, type: :controller do
 
     context "other's questions" do
       it "cannot delete" do
+        other_user = create(:user)
+        sign_in other_user
         expect {
           delete :destroy, params: { id: question }
         }.not_to change(Question, :count)
       end
 
-      it "redirects to questions#index" do
+      it "redirects to question" do
         delete :destroy, params: { id: question }
-        expect(response).to redirect_to(questions_path)
+        expect(response).to redirect_to(Question.last)
       end
     end
   end
