@@ -16,4 +16,9 @@ RSpec.describe Question, type: :model do
   it "does not allow long questions" do
     expect(build(:question, question: "a" * 251)).not_to be_valid
   end
+
+  it "will delete it's votes if deleted" do
+    question = create(:vote, :question_vote).content
+    expect { question.destroy }.to change(Vote, :count).by(-1)
+  end
 end

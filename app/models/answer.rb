@@ -7,7 +7,7 @@ class Answer < ApplicationRecord
 
   belongs_to :user
   belongs_to :question
-  has_many :votes, as: :content
+  has_many :votes, as: :content, dependent: :destroy
 
   def one_answer_per_user
     if self.new_record? && (self.question.nil? || self.question.answers.where(user_id: self.user_id).exists?)

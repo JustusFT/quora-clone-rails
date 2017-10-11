@@ -25,4 +25,9 @@ RSpec.describe Answer, type: :model do
   it "cannot be too long" do
     expect(build(:answer, answer: "a" * 65537)).not_to be_valid
   end
+
+  it "will delete it's votes if deleted" do
+    answer = create(:vote, :answer_vote).content
+    expect { answer.destroy }.to change(Vote, :count).by(-1)
+  end
 end

@@ -4,5 +4,5 @@ class Question < ApplicationRecord
 
   belongs_to :user
   has_many :answers
-  has_many :votes, as: :content
+  has_many :votes, as: :content, dependent: :destroy
 end
