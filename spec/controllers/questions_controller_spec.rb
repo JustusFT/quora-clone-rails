@@ -35,9 +35,9 @@ RSpec.describe QuestionsController, type: :controller do
         }.not_to change(Question, :count)
       end
 
-      it "redirects to home page" do
+      it "redirects to sign in page" do
         post :create, params: { question: question.as_json }
-        expect(response).to redirect_to(root_url)
+        expect(response).to redirect_to(new_user_session_url)
       end
     end
   end
@@ -77,6 +77,7 @@ RSpec.describe QuestionsController, type: :controller do
 
     context "other's questions" do
       it "cannot be updated" do
+        sign_in create(:user)
         put :update, params: { id: question.id, question: new_attributes }
         question.reload
 
@@ -86,6 +87,7 @@ RSpec.describe QuestionsController, type: :controller do
       end
 
       it "redirects to the question" do
+        sign_in create(:user)
         put :update, params: { id: question.id, question: question.as_json }
         expect(response).to redirect_to(Question.last)
       end
@@ -113,14 +115,14 @@ RSpec.describe QuestionsController, type: :controller do
 
     context "other's questions" do
       it "cannot delete" do
-        other_user = create(:user)
-        sign_in other_user
+        sign_in create(:user)
         expect {
           delete :destroy, params: { id: question }
         }.not_to change(Question, :count)
       end
 
       it "redirects to question" do
+        sign_in create(:user)
         delete :destroy, params: { id: question }
         expect(response).to redirect_to(Question.last)
       end

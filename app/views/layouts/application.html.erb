@@ -11,6 +11,18 @@
   <body>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
+    <div>
+      <% if signed_in? %>
+        Signed in as <%= current_user.full_name %><br />
+        <%= link_to "Sign out", destroy_user_session_url, method: :delete %><br />
+        <%= link_to "Ask question", new_question_url %>
+      <% else %>
+        <%= link_to "Sign in", new_user_session_url %>
+      <% end %>
+    </div>
+    <div>
+      <%= link_to "Questions", questions_path %>
+    </div>
     <%= yield %>
   </body>
 </html>

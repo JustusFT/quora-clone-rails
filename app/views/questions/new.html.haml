@@ -1,0 +1,9 @@
+= form_for @question do |f|
+  %div
+    = f.label :question
+    = f.text_field :question
+  %div
+    = f.label :description
+    = f.text_area :description
+  %div
+    = f.submit

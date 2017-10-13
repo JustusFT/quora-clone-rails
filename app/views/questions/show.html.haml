@@ -1,0 +1,9 @@
+%h1
+  = @question.question
+%p
+  = @question.description
+%p
+  asked by
+  = @question.user.full_name
+- if @question.user == current_user
+  = link_to "Edit question", edit_question_url(@question)

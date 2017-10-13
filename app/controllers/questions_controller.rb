@@ -1,4 +1,22 @@
 class QuestionsController < ApplicationController
+  before_action :authenticate_user!
+
+  def new
+    @question = Question.new
+  end
+
+  def edit
+    @question = Question.find(params[:id])
+  end
+
+  def index
+    @questions = Question.all
+  end
+
+  def show
+    @question = Question.find(params[:id])
+  end
+
   def create
     @question = Question.new(strong_params)
     @question.user = helpers.current_user

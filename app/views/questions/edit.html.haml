@@ -1,0 +1,12 @@
+= form_for @question do |f|
+  %div
+    = f.label :question
+    = f.text_field :question
+  %div
+    = f.label :description
+    = f.text_area :description
+  %div
+    = f.submit
+  %div
+    = button_to "Discard changes", question_url(@question), method: :get
+= button_to "Delete question", @question, method: :delete, data: { confirm: "Are you sure?" }
