@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe CommentsController, type: :controller do
   describe "#create" do
     let!(:comment) { build(:comment) }
+    let(:answer) { comment.answer }
     let(:user) { comment.user }
 
     describe "when signed in" do
@@ -12,21 +13,21 @@ RSpec.describe CommentsController, type: :controller do
 
       it "can comment on an answer" do
         expect {
-          post :create, params: { comment: comment.as_json }
+          post :create, params: { answer_id: answer.id, comment: comment.as_json }
         }.to change(Comment, :count).by(1)
       end
 
       it "can comment on a comment" do
         parent_comment = create(:comment)
         expect {
-          post :create, params: { comment: comment.as_json, parent_id: parent_comment.comment }
+          post :create, params: { answer_id: answer.id, comment: comment.as_json, parent_id: parent_comment.comment }
         }.to change(Comment, :count).by(1)
       end
 
       it "can comment on a comment on a comment" do
         parent_comment = create(:comment_reply)
         expect {
-          post :create, params: { comment: comment.as_json, parent_id: parent_comment.comment }
+          post :create, params: { answer_id: answer.id, comment: comment.as_json, parent_id: parent_comment.comment }
         }.to change(Comment, :count).by(1)
       end
     end
@@ -34,12 +35,12 @@ RSpec.describe CommentsController, type: :controller do
     describe "when signed out" do
       it "can not comment on an answer" do
         expect {
-          post :create, params: { comment: comment.as_json }
+          post :create, params: { answer_id: answer.id, comment: comment.as_json }
         }.not_to change(Comment, :count)
       end
 
       it "redirects to the sign in page" do
-        post :create, params: { comment: comment.as_json }
+        post :create, params: { answer_id: answer.id, comment: comment.as_json }
         expect(response).to redirect_to(new_user_session_url)
       end
     end

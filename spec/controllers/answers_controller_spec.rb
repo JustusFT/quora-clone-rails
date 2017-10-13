@@ -3,13 +3,14 @@ require 'rails_helper'
 RSpec.describe AnswersController, type: :controller do
   describe "#create" do
     let!(:answer) { build(:answer) }
+    let(:question) { answer.question }
     let(:user) { answer.user }
 
     describe "signed in" do
       it "can create a question" do
         sign_in user
         expect {
-          post :create, params: { answer: answer.as_json }
+          post :create, params: { question_id: question.id, answer: answer.as_json }
         }.to change(Answer, :count).by(1)
       end
     end
@@ -17,15 +18,15 @@ RSpec.describe AnswersController, type: :controller do
     describe "signed out" do
       it "cannot create a question" do
         expect {
-          post :create, params: { answer: answer.as_json }
+          post :create, params: { question_id: question.id, answer: answer.as_json }
         }.not_to change(Answer, :count)
       end
     end
 
     it "redirects to the question" do
       sign_in user
-      post :create, params: { answer: answer.as_json }
-      expect(:response).to redirect_to(answer.question)
+      post :create, params: { question_id: question.id, answer: answer.as_json }
+      expect(:response).to redirect_to(question)
     end
   end
 

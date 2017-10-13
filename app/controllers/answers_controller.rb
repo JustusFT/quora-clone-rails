@@ -1,13 +1,14 @@
 class AnswersController < ApplicationController
   def create
-    @answer = Answer.new(answer_params)
+    @question = Question.find(params[:question_id])
+    @answer = @question.answers.new(answer_params)
     @answer.user = helpers.current_user
 
     unless helpers.current_user.nil?
       @answer.save
     end
 
-    redirect_to @answer.question
+    redirect_to @question
   end
 
   def update

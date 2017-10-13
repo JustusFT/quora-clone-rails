@@ -2,7 +2,8 @@ class CommentsController < ApplicationController
   before_action :authenticate_user!
 
   def create
-    @comment = Comment.new(comment_params)
+    @answer = Answer.find(params[:answer_id])
+    @comment = @answer.comments.new(comment_params)
     @comment.user = helpers.current_user
 
     unless @comment.user.nil?
