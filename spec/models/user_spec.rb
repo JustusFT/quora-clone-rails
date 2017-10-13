@@ -30,4 +30,12 @@ RSpec.describe User, type: :model do
       expect { user.destroy }.to change(Vote, :count).by(-1)
     end
   end
+
+  it "can subscribe to many topics" do
+    user = create(:user)
+    10.times do
+      user.topics << create(:topic)
+    end
+    expect(user).to be_valid
+  end
 end

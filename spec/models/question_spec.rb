@@ -26,4 +26,12 @@ RSpec.describe Question, type: :model do
     question = create(:answer).question
     expect { question.destroy }.to change(Answer, :count).by(-1)
   end
+
+  it "can be tagged with many topics" do
+    question = create(:question)
+    10.times do
+      question.topics << create(:topic)
+    end
+    expect(question).to be_valid
+  end
 end
