@@ -23,3 +23,7 @@
       = render "answers/edit", answer: answer
       %div
         = button_to "Delete answer", answer, method: :delete, data: { confirm: "Are you sure?" }
+    %div
+      - answer.comments.each do |comment|
+        - if comment.parent.nil?
+          = render "comments/chain", comment: comment

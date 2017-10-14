@@ -1,0 +1,7 @@
+%div(style="padding-left:1em")
+  %h4
+    = comment.user.full_name
+  %p
+    = comment.comment
+  - comment.replies.each do |reply|
+    = render "comments/chain", comment: reply
