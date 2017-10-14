@@ -24,6 +24,9 @@
       %div
         = button_to "Delete answer", answer, method: :delete, data: { confirm: "Are you sure?" }
     %div
+      = form_for [answer, Comment.new] do |f|
+        = f.text_area :comment
+        = f.submit
       - answer.comments.each do |comment|
         - if comment.parent.nil?
           = render "comments/chain", comment: comment

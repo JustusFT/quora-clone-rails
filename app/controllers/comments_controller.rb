@@ -9,6 +9,8 @@ class CommentsController < ApplicationController
     unless @comment.user.nil?
       @comment.save
     end
+
+    redirect_to @answer.question
   end
 
   def update
@@ -18,6 +20,8 @@ class CommentsController < ApplicationController
       @comment.attributes = update_comment_params
       @comment.save
     end
+
+    redirect_to @comment.answer.question
   end
 
   def destroy
@@ -26,11 +30,13 @@ class CommentsController < ApplicationController
     unless @comment.user != helpers.current_user
       @comment.destroy
     end
+
+    redirect_to @comment.answer.question
   end
 
   private
   def comment_params
-    params.require(:comment).permit(:user_id, :answer_id, :comment_id, :comment)
+    params.require(:comment).permit(:user_id, :answer_id, :comment_id, :parent_id, :comment)
   end
 
   def update_comment_params

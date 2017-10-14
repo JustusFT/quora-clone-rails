@@ -3,5 +3,14 @@
     = comment.user.full_name
   %p
     = comment.comment
+  - if comment.user == current_user
+    = form_for [comment] do |f|
+      = f.text_area :comment
+      = f.submit
+    = button_to "Delete comment", comment, method: :delete, data: { confirm: "Are you sure?" }
+  = form_for [comment.answer, Comment.new] do |f|
+    = f.text_area :comment
+    = f.hidden_field :parent_id, value: comment.id
+    = f.submit
   - comment.replies.each do |reply|
     = render "comments/chain", comment: reply
