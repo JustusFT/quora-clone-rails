@@ -7,3 +7,19 @@
   = @question.user.full_name
 - if @question.user == current_user
   = link_to "Edit question", edit_question_url(@question)
+
+- unless @question.answers.where(user_id: current_user.id).exists?
+  = render "answers/new", question: @question, answer: Answer.new
+- else
+  %p Question already answered
+
+- @question.answers.each do |answer|
+  %div(style="padding-top:2em")
+    %h4
+      = answer.user.full_name
+    %p
+      = answer.answer
+    - if answer.user == current_user
+      = render "answers/edit", answer: answer
+      %div
+        = button_to "Delete answer", answer, method: :delete, data: { confirm: "Are you sure?" }
