@@ -7,7 +7,7 @@
   = @question.user.full_name
 %p
   = @question.score
-= render "shared/vote_buttons", content: @question
+= render "votes/vote_buttons", content: @question
 - if @question.user == current_user
   = link_to "Edit question", edit_question_url(@question)
 
@@ -25,7 +25,7 @@
     %p
       = answer.score
       points
-    = render "shared/vote_buttons", content: answer
+    = render "votes/vote_buttons", content: answer
     - if answer.user == current_user
       = render "answers/edit", answer: answer
       %div
