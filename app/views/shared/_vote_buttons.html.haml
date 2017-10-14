@@ -1,0 +1,8 @@
+- unless has_vote?(content, "upvote")
+  = button_to "Upvote", content_votes_url(content), params: { vote: { vote_type: "upvote" } }
+- else
+  = button_to "Upvoted", current_vote(content), method: :delete
+- unless has_vote?(content, "downvote")
+  = button_to "Downvote", content_votes_url(content), params: { vote: { vote_type: "downvote" } }
+- else
+  = button_to "Downvoted", current_vote(content), method: :delete

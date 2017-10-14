@@ -6,6 +6,7 @@
   %p
     = comment.score
     points
+  = render "shared/vote_buttons", content: comment
   - if comment.user == current_user
     = form_for [comment] do |f|
       = f.text_area :comment
