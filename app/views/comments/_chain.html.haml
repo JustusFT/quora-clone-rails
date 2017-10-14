@@ -3,6 +3,9 @@
     = comment.user.full_name
   %p
     = comment.comment
+  %p
+    = comment.score
+    points
   - if comment.user == current_user
     = form_for [comment] do |f|
       = f.text_area :comment

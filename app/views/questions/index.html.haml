@@ -3,3 +3,11 @@
 - @questions.each do |question|
   %div
     = link_to question.question, question
+    %p
+      asked by
+      = question.user.full_name
+    %p
+      = question.score
+      points,
+      = question.answers.count
+      answers

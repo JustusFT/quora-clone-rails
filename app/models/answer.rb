@@ -1,4 +1,6 @@
 class Answer < ApplicationRecord
+  include Votable
+
   validates :user_id, presence: true
   validates :question_id, presence: true
   validates :answer, presence: true, length: { maximum: 65536 }
@@ -8,7 +10,6 @@ class Answer < ApplicationRecord
   belongs_to :user
   belongs_to :question
   has_many :comments, dependent: :destroy
-  has_many :votes, as: :content, dependent: :destroy
 
   def one_answer_per_user
     if self.new_record? && (self.question.nil? || self.question.answers.where(user_id: self.user_id).exists?)

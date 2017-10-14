@@ -5,6 +5,9 @@
 %p
   asked by
   = @question.user.full_name
+%p
+  = @question.score
+  points
 - if @question.user == current_user
   = link_to "Edit question", edit_question_url(@question)
 
@@ -19,6 +22,9 @@
       = answer.user.full_name
     %p
       = answer.answer
+    %p
+      = answer.score
+      points
     - if answer.user == current_user
       = render "answers/edit", answer: answer
       %div
