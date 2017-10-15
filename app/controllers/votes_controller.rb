@@ -4,7 +4,7 @@ class VotesController < ApplicationController
     @vote = @votable.votes.new(vote_params)
     @vote.user_id = helpers.current_user.id
 
-    user_votes = Vote.where(user_id: helpers.current_user.id)
+    user_votes = @votable.votes.where(user_id: helpers.current_user.id)
 
     if user_votes.exists?
       user_votes.first.destroy
