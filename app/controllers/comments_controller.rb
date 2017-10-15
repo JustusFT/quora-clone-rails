@@ -7,7 +7,7 @@ class CommentsController < ApplicationController
     @comment.user = helpers.current_user
 
     if !@comment.user.nil? && @comment.save
-      flash[:sucecss] = "Comment created successfully"
+      flash[:success] = "Comment created successfully"
     else
       flash[:warning] = "Failed to create comment"
     end
@@ -20,7 +20,7 @@ class CommentsController < ApplicationController
     @comment.attributes = update_comment_params
 
     if @comment.user == helpers.current_user && @comment.save
-      flash[:sucecss] = "Comment updated successfully"
+      flash[:success] = "Comment updated successfully"
     else
       flash[:warning] = "Failed to update comment"
     end
@@ -32,7 +32,7 @@ class CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
 
     if @comment.user == helpers.current_user && @comment.destroy
-      flash[:sucecss] = "Comment deleted successfully"
+      flash[:success] = "Comment deleted successfully"
     else
       flash[:warning] = "Failed to delete comment"
     end
