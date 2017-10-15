@@ -1,6 +1,6 @@
 module VotesHelper
-  def content_votes_url(content)
-    method("#{content.class.name.downcase}_votes_url").call(content)
+  def content_votes_url(content, **params)
+    method("#{content.class.name.downcase}_votes_url").call(content, params)
   end
 
   def current_vote(content)
