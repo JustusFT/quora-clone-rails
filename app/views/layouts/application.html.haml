@@ -1,0 +1,13 @@
+!!!
+%html
+  %head
+    %title QuoraClone
+    = csrf_meta_tags
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+  %bod
+    = render "shared/navbar"
+    %p.notice= notice
+    %p.alert= alert
+    .container-fluid
+      = yield
