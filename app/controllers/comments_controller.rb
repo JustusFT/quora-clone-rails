@@ -6,8 +6,10 @@ class CommentsController < ApplicationController
     @comment = @answer.comments.new(comment_params)
     @comment.user = helpers.current_user
 
-    unless @comment.user.nil?
-      @comment.save
+    if !@comment.user.nil? && @comment.save
+      flash[:sucecss] = "Comment created successfully"
+    else
+      flash[:warning] = "Failed to create comment"
     end
 
     redirect_to @answer.question
@@ -15,10 +17,12 @@ class CommentsController < ApplicationController
 
   def update
     @comment = Comment.find(params[:id])
+    @comment.attributes = update_comment_params
 
-    unless @comment.user != helpers.current_user
-      @comment.attributes = update_comment_params
-      @comment.save
+    if @comment.user == helpers.current_user && @comment.save
+      flash[:sucecss] = "Comment updated successfully"
+    else
+      flash[:warning] = "Failed to update comment"
     end
 
     redirect_to @comment.answer.question
@@ -27,8 +31,10 @@ class CommentsController < ApplicationController
   def destroy
     @comment = Comment.find(params[:id])
 
-    unless @comment.user != helpers.current_user
-      @comment.destroy
+    if @comment.user == helpers.current_user && @comment.destroy
+      flash[:sucecss] = "Comment deleted successfully"
+    else
+      flash[:warning] = "Failed to delete comment"
     end
 
     redirect_to @comment.answer.question

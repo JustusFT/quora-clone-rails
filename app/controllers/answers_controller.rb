@@ -4,8 +4,10 @@ class AnswersController < ApplicationController
     @answer = @question.answers.new(answer_params)
     @answer.user = helpers.current_user
 
-    unless helpers.current_user.nil?
-      @answer.save
+    if !helpers.current_user.nil? && @answer.save
+      flash[:success] = "Answer created successfully"
+    else
+      flash[:warning] = "Failed to create answer"
     end
 
     redirect_to @question
@@ -15,8 +17,10 @@ class AnswersController < ApplicationController
     @answer = Answer.find(params[:id])
     @answer.attributes = answer_params
 
-    unless @answer.user != helpers.current_user
-      @answer.save
+    if @answer.user == helpers.current_user && @answer.save
+      flash[:success] = "Answer updated successfully"
+    else
+      flash[:warning] = "Failed to update answer"
     end
 
     redirect_to @answer.question
@@ -25,8 +29,10 @@ class AnswersController < ApplicationController
   def destroy
     @answer = Answer.find(params[:id])
 
-    unless @answer.user != helpers.current_user
-      @answer.destroy
+    if @answer.user == helpers.current_user && @answer.destroy
+      flash[:success] = "Answer deleted successfully"
+    else
+      flash[:warning] = "Failed to delete answer"
     end
 
     redirect_to @answer.question

@@ -21,11 +21,11 @@ class QuestionsController < ApplicationController
     @question = Question.new(strong_params)
     @question.user = helpers.current_user
 
-    if @question.user.nil?
-      redirect_to root_url
-    elsif @question.save
+    if @question.save
+      flash[:success] = "Question created successfully"
       redirect_to @question
     else
+      flash[:warning] = "Failed to create question"
       render :new
     end
   end
@@ -37,8 +37,10 @@ class QuestionsController < ApplicationController
     if @question.user != helpers.current_user
       redirect_to @question
     elsif @question.save
+      flash[:success] = "Question updated successfully"
       redirect_to @question
     else
+      flash[:warning] = "Failed to update question"
       render :edit
     end
   end
@@ -47,8 +49,10 @@ class QuestionsController < ApplicationController
     @question = Question.find(params[:id])
 
     if @question.user == helpers.current_user && @question.destroy!
+      flash[:success] = "Question deleted successfully"
       redirect_to questions_path
     else
+      flash[:warning] = "Failed to delete question"
       redirect_to @question
     end
   end
