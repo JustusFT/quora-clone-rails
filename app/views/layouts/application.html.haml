@@ -5,9 +5,16 @@
     = csrf_meta_tags
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
-  %bod
+  %body
     = render "shared/navbar"
     .container-fluid
-      %p.notice= notice
-      %p.alert= alert
+      - flash.each do |key, value|
+        - key = case key
+        - when "notice" then "success"
+        - when "alert" then "warning"
+        - else key
+        .alert.alert-dismissible{:role => "alert", :class => "alert-#{key}"}
+          %button.close{"aria-label" => "Close", "data-dismiss" => "alert", :type => "button"}
+            %span{"aria-hidden" => "true"} &#215;
+          = value
       = yield
