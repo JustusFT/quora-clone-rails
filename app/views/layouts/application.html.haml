@@ -4,6 +4,7 @@
     %title Not Quora
     = csrf_meta_tags
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = yield :style
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body
     #content.container

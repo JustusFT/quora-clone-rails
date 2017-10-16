@@ -1,0 +1,17 @@
+@import "variables";
+
+body {
+  background-color: #FAFAFA;
+}
+
+a.ask-question-link {
+  color: #999
+}
+
+.feed-item {
+  border: 1px solid #EEE;
+  border-radius: 4px;
+  background-color: $bg;
+  margin: 8px;
+  padding: 16px;
+}

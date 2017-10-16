@@ -13,11 +13,7 @@
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
-
-$color: #111;
-$bg: #FAFAFA;
-$contentBg: #FFF;
-$quoraRed: #B92B27;
+@import "variables";
 
 body {
   padding-top: 70px;
@@ -38,16 +34,12 @@ body {
   color: #999;
 }
 
-a.ask-question-link {
-  color: #999
-}
-
 .navbar a {
   color: $quoraRed;
 }
 
 a.btn-ask {
-  color: $contentBg;
+  color: $bg;
   background-color: $quoraRed;
 }
 
@@ -56,15 +48,7 @@ a.question-link {
 }
 
 .navbar {
-  background-color: $contentBg;
+  background-color: $bg;
   border-bottom: 1px solid #DDD;
   box-shadow: 0 3px 2px -2px rgba(200,200,200,0.2);
-}
-
-.feed-item {
-  border: 1px solid #EEE;
-  border-radius: 4px;
-  background-color: $contentBg;
-  margin: 8px;
-  padding: 16px;
 }
