@@ -1,13 +1,13 @@
 !!!
 %html
   %head
-    %title QuoraClone
+    %title Not Quora
     = csrf_meta_tags
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body
-    = render "shared/navbar"
-    .container-fluid
+    #content.container
+      = render "shared/navbar"
       - flash.each do |key, value|
         - key = case key
         - when "notice" then "success"

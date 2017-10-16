@@ -1,13 +1,17 @@
-- @questions.each do |question|
-  .container-fluid
-    %h3
-      = link_to question.question, question
-    %p
-      asked by
-      = question.user.full_name
-    %p
-      = question.score
-      points,
-      = question.answers.count
-      answers
-    = render "votes/vote_buttons", content: question
+.col-md-2
+  TODO
+.col-md-8
+  .feed-item
+    %div= current_user.full_name
+    %h4
+      = link_to "What is your question?", new_question_path, class: "ask-question-link"
+  - @questions.each do |question|
+    .feed-item
+      %h4
+        = link_to question.question, question, class: "question-link"
+      %p
+        asked by
+        = question.user.full_name
+      = render "votes/vote_buttons", content: question
+.col-md-2
+  TODO

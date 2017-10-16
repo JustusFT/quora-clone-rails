@@ -14,6 +14,57 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+$color: #111;
+$bg: #FAFAFA;
+$contentBg: #FFF;
+$quoraRed: #B92B27;
+
 body {
   padding-top: 70px;
+  background-color: $bg;
+}
+
+.btn-upvote {
+  background-color: #F1F8FB;
+  border: 1px solid #BBCADC;
+}
+
+.btn-downvote {
+  color: #999
+}
+
+.btn-voted {
+  background-color: #EEE;
+  color: #999;
+}
+
+a.ask-question-link {
+  color: #999
+}
+
+.navbar a {
+  color: $quoraRed;
+}
+
+a.btn-ask {
+  color: $contentBg;
+  background-color: $quoraRed;
+}
+
+a.question-link {
+  color: $color;
+}
+
+.navbar {
+  background-color: $contentBg;
+  border-bottom: 1px solid #DDD;
+  box-shadow: 0 3px 2px -2px rgba(200,200,200,0.2);
+}
+
+.feed-item {
+  border: 1px solid #EEE;
+  border-radius: 4px;
+  background-color: $contentBg;
+  margin: 8px;
+  padding: 16px;
 }

@@ -1,8 +1,8 @@
 - unless has_vote?(content, "upvote")
-  = link_to "Upvote", content_votes_url(content, vote: { vote_type: "upvote" }), method: :post, class: "btn btn-default"
+  = link_to "Upvote | #{content.score}", content_votes_url(content, vote: { vote_type: "upvote" }), method: :post, class: "btn btn-upvote"
 - else
-  = link_to "Upvoted", current_vote(content), method: :delete, class: "btn btn-default"
+  = link_to "Upvoted | #{content.score}", current_vote(content), method: :delete, class: "btn btn-voted"
 - unless has_vote?(content, "downvote")
-  = link_to "Downvote", content_votes_url(content, vote: { vote_type: "downvote" }), method: :post, class: "btn btn-default"
+  = link_to "Downvote", content_votes_url(content, vote: { vote_type: "downvote" }), method: :post, class: "btn btn-downvote"
 - else
-  = link_to "Downvoted", current_vote(content), method: :delete, class: "btn btn-default"
+  = link_to "Downvoted", current_vote(content), method: :delete, class: "btn btn-voted"

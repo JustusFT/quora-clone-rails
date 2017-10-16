@@ -3,9 +3,6 @@
     = comment.user.full_name
   %p
     = comment.comment
-  %p
-    = comment.score
-    points
   = render "votes/vote_buttons", content: comment
   - if comment.user == current_user
     = form_for [comment] do |f|

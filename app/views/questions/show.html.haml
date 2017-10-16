@@ -1,39 +1,40 @@
-%h1
-  = @question.question
-%p
-  = @question.description
-%p
-  asked by
-  = @question.user.full_name
-%p
-  = @question.score
-= render "votes/vote_buttons", content: @question
-- if @question.user == current_user
-  = link_to "Edit question", edit_question_url(@question)
+.col-md-8
+  %h3
+    = @question.question
+  %p
+    = @question.description
+  %p
+    asked by
+    = @question.user.full_name
+  = render "votes/vote_buttons", content: @question
+  - if @question.user == current_user
+    = link_to "Edit question", edit_question_url(@question)
 
-- unless @question.answers.where(user_id: current_user.id).exists?
-  = render "answers/new", question: @question, answer: Answer.new
-- else
-  %p Question already answered
+  - unless @question.answers.where(user_id: current_user.id).exists?
+    = render "answers/new", question: @question, answer: Answer.new
+  - else
+    %p Question already answered
 
-- @question.answers.each do |answer|
-  %div(style="padding-top:2em")
-    %h4
-      = answer.user.full_name
-    %p
-      = answer.answer
-    %p
-      = answer.score
-      points
-    = render "votes/vote_buttons", content: answer
-    - if answer.user == current_user
-      = render "answers/edit", answer: answer
+  - @question.answers.each do |answer|
+    %div(style="padding-top:2em")
+      %h4
+        = answer.user.full_name
+      %p
+        = answer.answer
+      %p
+        = answer.score
+        points
+      = render "votes/vote_buttons", content: answer
+      - if answer.user == current_user
+        = render "answers/edit", answer: answer
+        %div
+          = button_to "Delete answer", answer, method: :delete, data: { confirm: "Are you sure?" }
       %div
-        = button_to "Delete answer", answer, method: :delete, data: { confirm: "Are you sure?" }
-    %div
-      = form_for [answer, Comment.new] do |f|
-        = f.text_area :comment
-        = f.submit
-      - answer.comments.each do |comment|
-        - if comment.parent.nil?
-          = render "comments/chain", comment: comment
+        = form_for [answer, Comment.new] do |f|
+          = f.text_area :comment
+          = f.submit
+        - answer.comments.each do |comment|
+          - if comment.parent.nil?
+            = render "comments/chain", comment: comment
+.col-md-4
+  TODO
