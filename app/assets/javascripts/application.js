@@ -30,6 +30,7 @@ $(document).ready(function() {
 
   $('.show-edit-form').click(function() {
     showForm(this, '.edit-form');
+    $(this).parent().prevAll('.text:first').hide();
     $('textarea').trigger('input');
   });
 
@@ -41,6 +42,7 @@ $(document).ready(function() {
 
   $('.hide-edit-form').click(function() {
     hideForm(this, '.edit-form');
+    $(this).closest('.forms').prevAll('.text:first').show();
     $(this).closest('.edit-form')[0].reset();
   });
 

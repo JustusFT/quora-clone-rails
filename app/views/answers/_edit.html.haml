@@ -1,6 +1,6 @@
-= form_for answer, html: { class: "edit-answer-form" } do |f|
+= form_for answer, html: { class: "edit-form" } do |f|
   .input-group
-    = f.text_area :answer, class: "form-control comment-textarea edit-answer-textarea"
+    = f.text_area :answer, class: "form-control"
     %span.input-group-btn
       = f.submit "Update", class: "btn btn-primary"
-  .btn.btn-default.hide-edit-answer-form Discard Changes
+  .btn.btn-default.hide-edit-form Discard Changes
