@@ -1,4 +1,7 @@
 .col-md-8
+  .h4
+    %span Topics:
+    = @question.topics.pluck(:name).join(", ")
   %h3
     = @question.question
   %p
