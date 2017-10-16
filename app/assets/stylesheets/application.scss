@@ -26,11 +26,24 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 700;
 }
 
+.comments {
+  background-color: #F7F7F7;
+  padding: 16px;
+  display: none;
+}
+
+.comment {
+  display: none;
+}
+
 .new-form, .edit-form {
   display: none;
 }
 
-.forms textarea {
+.forms textarea, .comment-form textarea {
+  min-height: 34px;
+  height: 34px;
+  overflow-y: hidden;
   resize: none;
 }
 

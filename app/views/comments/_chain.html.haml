@@ -1,6 +1,6 @@
-%div(style="padding-left:1em")
-  %h4
-    = comment.user.full_name
+%h4.toggle-comment
+  = comment.user.full_name
+.comment(style="padding-left:1em")
   .text
     = simple_format comment.comment
   .forms

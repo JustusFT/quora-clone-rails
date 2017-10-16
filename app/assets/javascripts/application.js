@@ -44,6 +44,14 @@ $(document).ready(function() {
     $(this).closest('.edit-form')[0].reset();
   });
 
+  $('.toggle-comments').click(function() {
+    hideComments(this);
+  });
+
+  $('.toggle-comment').click(function() {
+    hideComments(this);
+  });
+
   function showForm(elem, formClass) {
     $(elem).parent().prev().find(formClass).show();
     $(elem).parent().prev().find(formClass + ' textarea').first().focus();
@@ -53,5 +61,10 @@ $(document).ready(function() {
   function hideForm(elem, formClass) {
     $(elem).closest(formClass).hide();
     $(elem).closest('.forms').next().show();
+  }
+
+  function hideComments(elem) {
+    $(elem).next().slideToggle();
+    $(elem).next().find('.comment').slideUp();
   }
 });
