@@ -26,11 +26,11 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 700;
 }
 
-.new-comment-form, .edit-comment-form, .edit-answer-form {
+.new-form, .edit-form {
   display: none;
 }
 
-.comment-textarea {
+.forms textarea {
   resize: none;
 }
 

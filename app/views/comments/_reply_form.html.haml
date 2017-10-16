@@ -1,6 +1,6 @@
-= form_for [comment.answer, Comment.new], html: { class: "new-comment-form" } do |f|
+= form_for [comment.answer, Comment.new], html: { class: "new-form" } do |f|
   .input-group
-    = f.text_area :comment, class: "form-control comment-textarea new-comment-textarea"
+    = f.text_area :comment, class: "form-control"
     = f.hidden_field :parent_id, value: comment.id
     %span.input-group-btn
       = f.submit "Comment", class: "btn btn-primary"
