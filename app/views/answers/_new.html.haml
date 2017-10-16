@@ -1,6 +1,5 @@
 = form_for [question, answer] do |f|
-  %div
-    = f.label :answer
-    = f.text_area :answer
-  %div
-    = f.submit
+  .input-group
+    = f.text_area :answer, class: "form-control"
+    %span.input-group-btn
+      = f.submit "Answer", class: "btn btn-primary"

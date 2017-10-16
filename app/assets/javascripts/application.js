@@ -17,7 +17,7 @@
 //= require_tree .
 
 $(document).ready(function() {
-  $('.forms textarea').each(function () {
+  $('.input-group textarea').each(function () {
     this.setAttribute('style', 'min-height:34px;height:34px;overflow-y:hidden;');
   }).on('input', function () {
     this.style.height = '0px';
