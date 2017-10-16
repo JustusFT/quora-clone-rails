@@ -3,6 +3,7 @@
   %head
     %title Not Quora
     = csrf_meta_tags
+    %link{ :href => "https://fonts.googleapis.com/css?family=Droid+Serif:400,700|Open+Sans", :rel => "stylesheet" }
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = yield :style
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
