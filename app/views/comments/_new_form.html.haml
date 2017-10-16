@@ -1,0 +1,5 @@
+= form_for [answer, Comment.new], html: { class: "new-comment-form" } do |f|
+  .input-group
+    = f.text_area :comment, class: "form-control comment-textarea new-comment-textarea"
+    %span.input-group-btn
+      = f.submit "Comment", class: "btn btn-primary"

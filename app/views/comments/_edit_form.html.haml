@@ -1,0 +1,6 @@
+= form_for [comment], html: { class: "edit-comment-form" } do |f|
+  .input-group
+    = f.text_area :comment, class: "form-control comment-textarea edit-comment-textarea"
+    %span.input-group-btn
+      = f.submit "Update", class: "btn btn-primary"
+  .btn.btn-default.hide-edit-comment-form Discard Changes

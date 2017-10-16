@@ -1,17 +1,15 @@
 %div(style="padding-left:1em")
   %h4
     = comment.user.full_name
-  %p
-    = comment.comment
-  = render "votes/vote_buttons", content: comment
+  .comment-text
+    = simple_format comment.comment
   - if comment.user == current_user
-    = form_for [comment] do |f|
-      = f.text_area :comment
-      = f.submit
-    = button_to "Delete comment", comment, method: :delete, data: { confirm: "Are you sure?" }
-  = form_for [comment.answer, Comment.new] do |f|
-    = f.text_area :comment
-    = f.hidden_field :parent_id, value: comment.id
-    = f.submit
+    = render "comments/edit_form", comment: comment
+  = render "votes/vote_buttons", content: comment
+  %button.btn.btn-default.show-new-comment-form Reply
+  - if comment.user == current_user
+    %button.btn.btn-default.show-edit-comment-form Edit
+    = link_to "Delete", comment, method: :delete, class: "btn btn-default", data: { confirm: "Are you sure?" }
+  = render "comments/reply_form", comment: comment
   - comment.replies.each do |reply|
     = render "comments/chain", comment: reply

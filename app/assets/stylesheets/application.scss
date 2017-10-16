@@ -20,6 +20,18 @@ body {
   background-color: $bg;
 }
 
+.new-comment-form, .edit-comment-form, .edit-answer-form {
+  display: none;
+}
+
+.comment-textarea {
+  resize: none;
+}
+
+.input-group-addon, .input-group-btn {
+  vertical-align: top;
+}
+
 .btn-upvote {
   background-color: #F1F8FB;
   border: 1px solid #BBCADC;
