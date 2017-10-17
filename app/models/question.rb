@@ -8,7 +8,7 @@ class Question < ApplicationRecord
   has_many :answers, dependent: :destroy
   has_and_belongs_to_many :topics
 
-  scope :topic, ->(topic_id) { joins(:topics).where("topics": { id: topic_id }) }
+  scope :topic, ->(topic_id) { joins(:topics).where("topics": { id: topic_id }).group(:id) }
 
   def get_question
     self
