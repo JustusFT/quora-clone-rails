@@ -8,6 +8,7 @@ class Question < ApplicationRecord
   has_many :answers, dependent: :destroy
   has_and_belongs_to_many :topics
 
+  default_scope { order(created_at: :desc) }
   scope :topic, ->(topic_id) { joins(:topics).where("topics": { id: topic_id }).group(:id) }
 
   paginates_per 5

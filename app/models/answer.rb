@@ -11,6 +11,8 @@ class Answer < ApplicationRecord
   belongs_to :question
   has_many :comments, dependent: :destroy
 
+  default_scope { order(created_at: :desc) }
+
   def get_question
     self.question
   end
