@@ -24,4 +24,9 @@
   - @question.answers.where.not(user_id: current_user.id).each do |answer|
     = render "answers/answer", answer: answer
 .col-md-4
-  TODO
+  .related-questions
+    %h4 Related Questions
+    %hr
+    - Question.topic(@question.topics.pluck(:id)).limit(20).each do |question|
+      .related-question
+        = link_to question.question, question
