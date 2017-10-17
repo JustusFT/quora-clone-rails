@@ -14,6 +14,7 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "variables";
+@import "topics";
 
 body {
   padding-top: 70px;
@@ -55,7 +56,7 @@ h1, h2, h3, h4, h5, h6 {
   font-family: $sans;
 }
 
-.btn-upvote {
+.btn-upvote, .btn-follow-topic {
   background-color: #F1F8FB;
   border: 1px solid #BBCADC;
 }

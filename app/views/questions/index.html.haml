@@ -9,11 +9,6 @@
       = link_to "What is your question?", new_question_path, class: "ask-question-link"
   - @questions.each do |question|
     .feed-item
-      %h4
-        = link_to question.question, question, class: "question-link"
-      %p
-        asked by
-        = question.user.full_name
-      = render "votes/vote_buttons", content: question
+      = render "questions/item", question: question
 .col-md-2
   TODO

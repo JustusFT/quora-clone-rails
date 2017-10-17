@@ -1,0 +1,15 @@
+.row.topic-header
+  = image_tag "http://lorempixel.com/256/256/"
+  %h3= @topic.name
+  %span
+    = link_to "Follow Topic | #{@topic.users.count}", "#", method: :get, class: "btn btn-follow-topic text-right"
+%hr
+.row
+  .col-md-8
+    %h4 Feed
+    %hr
+    - @topic.questions.each do |question|
+      = render "questions/item", question: question
+      %hr
+  .col-md-4
+    About

@@ -19,4 +19,6 @@ Rails.application.routes.draw do
   end
 
   resources :votes, only: [:destroy]
+
+  resources :topics, only: [:show]
 end

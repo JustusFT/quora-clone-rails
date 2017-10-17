@@ -1,7 +1,8 @@
 .col-md-8
   .h4
     %span Topics:
-    = @question.topics.pluck(:name).join(", ")
+    - @question.topics.each do |topic|
+      = link_to topic.name, topic
   %h3
     = @question.question
   %p

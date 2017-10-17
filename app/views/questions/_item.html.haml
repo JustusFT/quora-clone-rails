@@ -1,0 +1,10 @@
+%h4
+  = link_to question.question, question, class: "question-link"
+%p
+  asked by
+  = question.user.full_name
+%p
+  - answer = question.answers.last
+  %h5= answer.user.full_name
+  %p= answer.answer
+= render "votes/vote_buttons", content: question

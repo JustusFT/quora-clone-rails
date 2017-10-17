@@ -1,0 +1,22 @@
+// Place all the styles related to the topics controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.topic-header {
+  padding: 16px;
+  position: relative;
+  > img {
+    width: 96px;
+    height: 96px;
+    border-radius: 4px;
+  }
+  > h3 {
+    display: inline-block;
+    margin-left: 32px;
+  }
+  > span {
+    position: absolute;
+    bottom: 16px;
+    right: 32px;
+  }
+}
