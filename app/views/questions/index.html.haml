@@ -28,5 +28,6 @@
   - @questions.each do |question|
     .feed-item
       = render "questions/item", question: question
+  = paginate @questions
 .col-md-2
   TODO

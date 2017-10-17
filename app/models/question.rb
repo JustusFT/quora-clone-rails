@@ -10,6 +10,8 @@ class Question < ApplicationRecord
 
   scope :topic, ->(topic_id) { joins(:topics).where("topics": { id: topic_id }).group(:id) }
 
+  paginates_per 5
+
   def get_question
     self
   end
