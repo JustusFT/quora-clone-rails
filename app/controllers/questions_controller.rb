@@ -11,6 +11,7 @@ class QuestionsController < ApplicationController
 
   def index
     @questions = Question.all
+    @questions = @questions.topic(params[:topic_id]) if params[:topic_id]
   end
 
   def show
