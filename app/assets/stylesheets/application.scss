@@ -56,7 +56,7 @@ h1, h2, h3, h4, h5, h6 {
   font-family: $sans;
 }
 
-.btn-upvote, .btn-follow-topic {
+.btn-upvote, .btn-follow {
   background-color: #F1F8FB;
   border: 1px solid #BBCADC;
 }
@@ -65,7 +65,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #999;
 }
 
-.btn-voted {
+.btn-voted, .btn-followed {
   background-color: #EEE;
   color: #999;
 }
