@@ -1,0 +1,19 @@
+@import "variables";
+
+.btn {
+  font-family: $sans;
+}
+
+.btn-blue {
+  background-color: #F1F8FB;
+  border: 1px solid #BBCADC;
+}
+
+.btn-downvote {
+  color: #999;
+}
+
+.btn-gray {
+  background-color: #EEE;
+  color: #999;
+}

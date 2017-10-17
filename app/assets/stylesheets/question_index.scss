@@ -1,0 +1,38 @@
+// Place all the styles related to the questions controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "variables";
+
+.related-questions {
+  font-family: $sans;
+}
+
+.related-question {
+  padding-bottom: 1em;
+}
+
+.comments {
+  background-color: #F7F7F7;
+  padding: 16px;
+  display: none;
+}
+
+.comment {
+  display: none;
+}
+
+.new-form, .edit-form {
+  display: none;
+}
+
+.input-group textarea {
+  min-height: 34px;
+  height: 34px;
+  overflow-y: hidden;
+  resize: none;
+}
+
+.input-group-addon, .input-group-btn {
+  vertical-align: top;
+}

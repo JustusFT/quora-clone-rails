@@ -13,9 +13,13 @@
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
 @import "variables";
+
 @import "topics";
-@import "questions";
+@import "question_index";
+@import "navbar";
+@import "buttons";
 
 body {
   padding-top: 70px;
@@ -28,71 +32,6 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 700;
 }
 
-.comments {
-  background-color: #F7F7F7;
-  padding: 16px;
-  display: none;
-}
-
-.comment {
-  display: none;
-}
-
-.new-form, .edit-form {
-  display: none;
-}
-
-.input-group textarea {
-  min-height: 34px;
-  height: 34px;
-  overflow-y: hidden;
-  resize: none;
-}
-
-.input-group-addon, .input-group-btn {
-  vertical-align: top;
-}
-
-.btn {
-  font-family: $sans;
-}
-
-.btn-upvote, .btn-follow {
-  background-color: #F1F8FB;
-  border: 1px solid #BBCADC;
-}
-
-.btn-downvote {
-  color: #999;
-}
-
-.btn-voted, .btn-followed {
-  background-color: #EEE;
-  color: #999;
-}
-
-.navbar a {
-  color: $quoraRed;
-}
-
-a.btn-ask {
-  color: $bg;
-  background-color: $quoraRed;
-}
-
 a.question-link {
   color: $color;
-}
-
-.navbar {
-  background-color: $bg;
-  border-bottom: 1px solid #DDD;
-  box-shadow: 0 3px 2px -2px rgba(200,200,200,0.2);
-  font-family: $sans;
-}
-
-.navbar-brand {
-  font-weight: 700;
-  font-size: 1.75em;
-  font-family: $serifs;
 }

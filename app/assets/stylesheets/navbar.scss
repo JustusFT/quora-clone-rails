@@ -1,0 +1,23 @@
+@import "variables";
+
+.navbar {
+  background-color: $bg;
+  border-bottom: 1px solid #DDD;
+  box-shadow: 0 3px 2px -2px rgba(200,200,200,0.2);
+  font-family: $sans;
+}
+
+.navbar-brand {
+  font-weight: 700;
+  font-size: 1.75em;
+  font-family: $serifs;
+}
+
+.navbar a {
+  color: $quoraRed;
+}
+
+a.btn-ask {
+  color: $bg;
+  background-color: $quoraRed;
+}
