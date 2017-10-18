@@ -1,6 +1,14 @@
 class QuestionsController < ApplicationController
   before_action :authenticate_user!
 
+  def search_topic
+    @question = Question.find(params[:question_id])
+    @results = Topic.search_by_name(params[:q]).where.not(id: @question.topics.pluck(:id))
+    respond_to do |format|
+      format.js {}
+    end
+  end
+
   def add_topic
     @question = Question.find(params[:question_id])
     topic = Topic.find(params[:topic_id])

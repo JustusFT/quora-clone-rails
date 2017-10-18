@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     resources :votes, only: [:create]
     post :add_topic
     delete :remove_topic
+    get :search_topic
   end
 
   resources :answers, only: [:update, :destroy] do

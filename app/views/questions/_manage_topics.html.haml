@@ -1,4 +1,0 @@
-- Topic.all.each do |topic|
-  .row
-    = link_to topic.name, question_add_topic_url(question, topic_id: topic.id), method: :post
-    = link_to raw("&times;"), question_remove_topic_url(question, topic_id: topic.id), method: :delete, data: { confirm: "Are you sure?" }

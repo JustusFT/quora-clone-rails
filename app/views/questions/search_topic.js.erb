@@ -1,0 +1,9 @@
+let results = <%= raw @results.to_json %>
+$('#topic-search-results').empty();
+<% if @results.empty? %>
+  $('#topic-search-results').append("<div>No topics found</div>")
+<% else %>
+  <% @results.each do |result| %>
+    $('#topic-search-results').append('<div><%= link_to result.name, question_add_topic_url(@question, topic_id: result.id), method: :post %></div>');
+  <% end %>
+<% end %>

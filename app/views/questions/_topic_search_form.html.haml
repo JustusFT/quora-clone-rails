@@ -1,0 +1,12 @@
+%textarea#topic-search-form.form-control
+
+#topic-search-results
+
+:javascript
+  let url = "#{ question_search_topic_url(question) }";
+  let xhr;
+
+  $('#topic-search-form').keyup(function(e) {
+    if(xhr) { xhr.abort(); }
+    xhr = $.get(url, {'q': e.target.value});
+  });
