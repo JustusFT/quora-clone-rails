@@ -19,7 +19,7 @@ class TopicsController < ApplicationController
     @topic = Topic.find(params[:topic_id])
     user = helpers.current_user
     follows = TopicUser.where(topic_id: @topic.id, user_id: user.id)
-    unless follows.count == 0
+    unless follows.count.empty?
       follows.delete_all
       flash[:success] = "Topic unfollowed successfully"
     else

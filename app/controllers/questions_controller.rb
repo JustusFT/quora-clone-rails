@@ -4,16 +4,25 @@ class QuestionsController < ApplicationController
   def add_topic
     @question = Question.find(params[:question_id])
     topic = Topic.find(params[:topic_id])
-    @question.topics << topic
-    flash[:success] = "Topic added successfully"
+    question_topic = QuestionTopic.new(question_id: @question.id, topic_id: topic.id)
+    if question_topic.save
+      flash[:success] = "Topic added successfully"
+    else
+      flash[:danger] = "Failed to add topic"
+    end
     redirect_to @question
   end
 
   def remove_topic
     @question = Question.find(params[:question_id])
     topic = Topic.find(params[:topic_id])
-    @question.topics.delete(topic)
-    flash[:success] = "Topic removed successfully"
+    question_topic = QuestionTopic.where(question_id: @question.id, topic_id: topic.id)
+    unless question_topic.empty?
+      question_topic.delete_all
+      flash[:success] = "Topic removed successfully"
+    else
+      flash[:danger] = "Failed to remove topic"
+    end
     redirect_to @question
   end
 

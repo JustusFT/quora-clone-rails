@@ -6,7 +6,8 @@ class Question < ApplicationRecord
 
   belongs_to :user
   has_many :answers, dependent: :destroy
-  has_and_belongs_to_many :topics
+  has_many :question_topics
+  has_many :topics, through: :question_topics
 
   default_scope { order(created_at: :desc) }
   scope :topic, ->(topic_id) { joins(:topics).where("topics": { id: topic_id }).group(:id) }
