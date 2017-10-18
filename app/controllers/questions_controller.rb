@@ -1,6 +1,22 @@
 class QuestionsController < ApplicationController
   before_action :authenticate_user!
 
+  def add_topic
+    @question = Question.find(params[:question_id])
+    topic = Topic.find(params[:topic_id])
+    @question.topics << topic
+    flash[:success] = "Topic added successfully"
+    redirect_to @question
+  end
+
+  def remove_topic
+    @question = Question.find(params[:question_id])
+    topic = Topic.find(params[:topic_id])
+    @question.topics.delete(topic)
+    flash[:success] = "Topic removed successfully"
+    redirect_to @question
+  end
+
   def new
     @question = Question.new
   end

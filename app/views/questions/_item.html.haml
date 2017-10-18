@@ -5,6 +5,7 @@
   = question.user.full_name
 %p
   - answer = question.answers.last
-  %h5= answer.user.full_name
-  %p= answer.answer
+  - if answer
+    %h5= answer.user.full_name
+    %p= answer.answer
 = render "votes/vote_buttons", content: question

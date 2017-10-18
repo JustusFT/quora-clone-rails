@@ -3,6 +3,9 @@
     %span Topics:
     - @question.topics.each do |topic|
       = link_to topic.name, topic
+      = link_to raw("&times;"), question_remove_topic_url(@question, topic_id: topic.id), method: :delete, data: { confirm: "Are you sure?" }
+  .row
+    = render "questions/manage_topics", question: @question
   %h3
     = @question.question
   %p

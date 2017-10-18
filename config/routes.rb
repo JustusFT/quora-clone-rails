@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   resources :questions, only: [:create, :update, :destroy, :new, :edit, :index, :show] do
     resources :answers, only: [:create]
     resources :votes, only: [:create]
+    post :add_topic
+    delete :remove_topic
   end
 
   resources :answers, only: [:update, :destroy] do
