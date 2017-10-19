@@ -1,10 +1,8 @@
 .col-md-8
   %h4
     %span Topics:
-  - @question.topics.each do |topic|
-    = link_to topic.name, topic
-    = link_to raw("&times;"), question_remove_topic_url(@question, topic_id: topic.id), method: :delete, data: { confirm: "Are you sure?" }
-  %h3 Add topics
+
+  = render "questions/topics_list", question: @question
 
   = render "questions/topic_search_form", question: @question
 

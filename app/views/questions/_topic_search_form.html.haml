@@ -1,6 +1,23 @@
-%textarea#topic-search-form.form-control
+%button.btn.btn-deafult{"data-target" => "#edit-topics-modal", "data-toggle" => "modal", :type => "button"}
+  %span.glyphicon.glyphicon-pencil{"aria-hidden" => "true"}
 
-#topic-search-results
+#edit-topics-modal.modal{"aria-labelledby" => "edit-topics-modal-label", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-header
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} &#215;
+        %h4#edit-topics-modal-label.modal-title Edit topics
+      .modal-body
+        %input#topic-search-form.form-control{:type => "text"}
+        #topic-search-results
+        - question.topics.each do |topic|
+          .container-fluid
+            = link_to raw("&times;"), question_remove_topic_url(question, topic_id: topic.id), method: :delete, data: { confirm: "Are you sure?" }
+            = topic.name
+      .modal-footer
+        %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
+        %button.btn.btn-primary{:type => "button"} Save changes
 
 :javascript
   let url = "#{ question_search_topic_url(question) }";
