@@ -1,4 +1,5 @@
 = form_for [question, answer] do |f|
+  = f.label :answer, class: "sr-only"
   .input-group
     = f.text_area :answer, class: "form-control"
     %span.input-group-btn

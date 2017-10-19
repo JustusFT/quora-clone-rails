@@ -17,7 +17,7 @@ describe "submitting an answer", type: :feature do
       within("#new_answer") do
         fill_in "Answer", with: answer
       end
-      click_button "Create Answer"
+      click_button "Answer"
       expect(page).to have_content answer
     end
 
@@ -30,7 +30,7 @@ describe "submitting an answer", type: :feature do
       within("#new_answer") do
         fill_in "Answer", with: answer
       end
-      click_button "Create Answer"
+      click_button "Answer"
       expect(page.has_css?("#new_answer")).to eq(false)
     end
   end
