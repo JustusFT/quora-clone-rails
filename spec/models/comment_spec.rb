@@ -41,4 +41,16 @@ RSpec.describe Comment, type: :model do
     comment = create(:vote, :comment_vote).content
     expect { comment.destroy }.to change(Vote, :count).by(-1)
   end
+
+  describe "#get_question" do
+    let!(:comment) { create(:comment) }
+
+    it "returns a question" do
+      expect(comment.get_question).to be_an_instance_of(Question)
+    end
+
+    it "will return the question it belongs to" do
+      expect(comment.get_question).to eq(comment.answer.question)
+    end
+  end
 end

@@ -34,4 +34,16 @@ RSpec.describe Question, type: :model do
     end
     expect(question).to be_valid
   end
+
+  describe "#get_question" do
+    let!(:question) { create(:question) }
+
+    it "returns a question" do
+      expect(question.get_question).to be_an_instance_of(Question)
+    end
+
+    it "will return the question it belongs to" do
+      expect(question.get_question).to eq(question)
+    end
+  end
 end
