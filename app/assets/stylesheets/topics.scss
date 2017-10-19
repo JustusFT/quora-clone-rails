@@ -2,6 +2,8 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+@import "variables";
+
 .topic-header {
   padding: 16px;
   position: relative;
@@ -19,4 +21,24 @@
     bottom: 16px;
     right: 32px;
   }
+}
+
+.topic-label {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 1000px;
+  background-color: #EDEDF7;
+  font-family: $sans;
+  color: #808393;
+}
+
+a.topic-label {
+  text-decoration: none;
+  color: #808393;
+}
+
+.remove-topic-link {
+  font-size: 1.5em;
+  color: #222;
+  vertical-align: middle;
 }

@@ -1,4 +1,4 @@
-%button.btn.btn-deafult{"data-target" => "#edit-topics-modal", "data-toggle" => "modal", :type => "button"}
+%a.topic-label{"data-target" => "#edit-topics-modal", "data-toggle" => "modal", :type => "button"}
   %span.glyphicon.glyphicon-pencil{"aria-hidden" => "true"}
 
 #edit-topics-modal.modal{"aria-labelledby" => "edit-topics-modal-label", :role => "dialog", :tabindex => "-1"}
@@ -10,11 +10,12 @@
         %h4#edit-topics-modal-label.modal-title Edit topics
       .modal-body
         %input#topic-search-form.form-control{:type => "text"}
-        #topic-search-results
+        .container-fluid{:style => "position:relative"}
+          #topic-search-results.list-group{:style => "display:none;position:absolute;left:0;right:0;max-height:320px;overflow-y:scroll"}
         - question.topics.each do |topic|
           .container-fluid
-            = link_to raw("&times;"), question_remove_topic_url(question, topic_id: topic.id), method: :delete, data: { confirm: "Are you sure?" }
-            = topic.name
+            = link_to raw("&times;"), question_remove_topic_url(question, topic_id: topic.id), method: :delete, data: { confirm: "Are you sure?" }, class: "remove-topic-link"
+            .topic-label= topic.name
       .modal-footer
         %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
         %button.btn.btn-primary{:type => "button"} Save changes
@@ -25,5 +26,10 @@
 
   $('#topic-search-form').keyup(function(e) {
     if(xhr) { xhr.abort(); }
-    xhr = $.get(url, {'q': e.target.value});
+    let value = e.target.value;
+    if(value) {
+      xhr = $.get(url, {'q': value});
+    } else {
+      $('#topic-search-results').hide();
+    }
   });
