@@ -6,7 +6,7 @@ class CommentsController < ApplicationController
     @comment = @answer.comments.new(comment_params)
     @comment.user = helpers.current_user
 
-    if !@comment.user.nil? && @comment.save
+    if @comment.save
       flash[:success] = "Comment created successfully"
     else
       flash[:warning] = "Failed to create comment"

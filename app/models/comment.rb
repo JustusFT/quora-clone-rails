@@ -3,7 +3,7 @@ class Comment < ApplicationRecord
 
   validates :user_id, presence: true
   validates :answer_id, presence: true
-  validates :comment, length: { maximum: 65536 }
+  validates :comment, length: { maximum: 65536 }, allow_blank: false
 
   belongs_to :user
   belongs_to :answer

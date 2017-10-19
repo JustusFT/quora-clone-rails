@@ -30,6 +30,13 @@ RSpec.describe CommentsController, type: :controller do
           post :create, params: { answer_id: answer.id, comment: comment.as_json, parent_id: parent_comment.comment }
         }.to change(Comment, :count).by(1)
       end
+
+      it "can not post an invalid comment" do
+        invalid_comment = build(:invalid_comment)
+        expect {
+          post :create, params: { answer_id: invalid_comment.answer.id, comment: invalid_comment.as_json }
+        }.not_to change(Comment, :count)
+      end
     end
 
     describe "when signed out" do
@@ -58,6 +65,14 @@ RSpec.describe CommentsController, type: :controller do
         comment.reload
 
         expect(comment.comment).to eq(new_attributes[:comment])
+      end
+
+      it "can not update with invalid paramaters" do
+        sign_in user
+        put :update, params: { id: comment, comment: attributes_for(:invalid_comment) }
+        comment.reload
+
+        expect(comment.comment).not_to eq(new_attributes[:comment])
       end
     end
 
