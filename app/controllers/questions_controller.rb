@@ -2,7 +2,7 @@ class QuestionsController < ApplicationController
   before_action :authenticate_user!
 
   def search_topic
-    @question = Question.find(params[:question_id])
+    @question = Question.find(params[:id])
     @results = Topic.search_by_name(params[:q]).where.not(id: @question.topics.pluck(:id))
     respond_to do |format|
       format.js {}
@@ -10,7 +10,7 @@ class QuestionsController < ApplicationController
   end
 
   def add_topic
-    @question = Question.find(params[:question_id])
+    @question = Question.find(params[:id])
     topic = Topic.find(params[:topic_id])
     question_topic = QuestionTopic.new(question_id: @question.id, topic_id: topic.id)
     if question_topic.save
@@ -22,7 +22,7 @@ class QuestionsController < ApplicationController
   end
 
   def remove_topic
-    @question = Question.find(params[:question_id])
+    @question = Question.find(params[:id])
     topic = Topic.find(params[:topic_id])
     question_topic = QuestionTopic.where(question_id: @question.id, topic_id: topic.id)
     unless question_topic.empty?

@@ -14,14 +14,14 @@
           #topic-search-results.list-group{:style => "display:none;position:absolute;left:0;right:0;max-height:320px;overflow-y:scroll"}
         - question.topics.each do |topic|
           .container-fluid
-            = link_to raw("&times;"), question_remove_topic_url(question, topic_id: topic.id), method: :delete, data: { confirm: "Are you sure?" }, class: "remove-topic-link"
+            = link_to raw("&times;"), remove_topic_question_url(question, topic_id: topic.id), method: :delete, data: { confirm: "Are you sure?" }, class: "remove-topic-link"
             .topic-label= topic.name
       .modal-footer
         %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
         %button.btn.btn-primary{:type => "button"} Save changes
 
 :javascript
-  let url = "#{ question_search_topic_url(question) }";
+  let url = "#{ search_topic_question_url(question) }";
   let xhr;
 
   $('#topic-search-form').keyup(function(e) {

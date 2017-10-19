@@ -1,6 +1,56 @@
 require 'rails_helper'
 
 RSpec.describe QuestionsController, type: :controller do
+  describe "topic methods" do
+    let!(:question) { create(:question) }
+    let!(:topic) { create(:topic) }
+    let!(:user) { create(:user) }
+
+    describe "#search_topic" do
+      describe "@results" do
+        it "will return matching topics" do
+          sign_in user
+          get :search_topic, xhr: true, params: { id: question.id, q: topic.name[0] }
+          expect(controller.instance_variable_get(:@results).include? topic).to be true
+        end
+
+        it "will not return matching topics already added to the question" do
+          sign_in user
+          question.topics << topic
+          get :search_topic, xhr: true, params: { id: question.id, q: topic.name[0] }
+          expect(controller.instance_variable_get(:@results).include? topic).to be false
+        end
+      end
+    end
+
+    describe "#add_topic" do
+      it "can add a topic" do
+        sign_in user
+        expect {
+          post :add_topic, params: { id: question.id, topic_id: topic.id }
+        }.to change(question.topics, :count).by(1)
+      end
+
+      it "cannot add the same topic twice" do
+        sign_in user
+        post :add_topic, params: { id: question.id, topic_id: topic.id }
+        expect {
+          post :add_topic, params: { id: question.id, topic_id: topic.id }
+        }.not_to change(question.topics, :count)
+      end
+    end
+
+    describe "#remove_topic" do
+      it "can remove a topic" do
+        sign_in user
+        post :add_topic, params: { id: question.id, topic_id: topic.id }
+        expect {
+          delete :remove_topic, params: { id: question.id, topic_id: topic.id }
+        }.to change(question.topics, :count).by(-1)
+      end
+    end
+  end
+
   describe "#create" do
     let!(:question) { build(:question) }
     let(:user) { question.user }

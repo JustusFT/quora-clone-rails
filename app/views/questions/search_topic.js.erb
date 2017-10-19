@@ -7,7 +7,7 @@ $('#topic-search-results').empty();
 <% else %>
   <% @results.each do |result| %>
     $('#topic-search-results').append(
-      '<%= link_to(question_add_topic_url(@question, topic_id: result.id), method: :post, class: "list-group-item") do %>' +
+      '<%= link_to(add_topic_question_url(@question, topic_id: result.id), method: :post, class: "list-group-item") do %>' +
         '<%= j render "questions/topic_search_result", topic: result %>' +
       '<% end %>'
     );
