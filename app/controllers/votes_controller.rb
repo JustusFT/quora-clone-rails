@@ -13,18 +13,26 @@ class VotesController < ApplicationController
       flash[:warning] = "Failed to #{@vote.vote_type} #{@votable.class.name.downcase}"
     end
 
-    redirect_to @votable.get_question
+    respond_to do |format|
+      format.html { redirect_to @votable.get_question }
+      format.js
+    end
   end
 
   def destroy
     @vote = Vote.find(params[:id])
+    @votable = @vote.content
+    
     if @vote.destroy
       flash[:success] = "#{@vote.vote_type.capitalize} deleted successfully"
     else
       flash[:warning] = "Failed to delete #{@vote.vote_type}"
     end
 
-    redirect_to @vote.content.get_question
+    respond_to do |format|
+      format.html { redirect_to @votable.get_question }
+      format.js
+    end
   end
 
   private

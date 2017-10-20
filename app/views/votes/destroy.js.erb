@@ -1,0 +1,1 @@
+$(<%= "#{@votable.class.name.downcase}_#{@votable.id}_vote_buttons" %>).html('<%= j render "votes/vote_buttons", content: @votable %>')

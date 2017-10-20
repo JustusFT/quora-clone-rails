@@ -6,16 +6,8 @@
 
   = render "questions/topic_search_form", question: @question
 
-  %h3
-    = @question.question
-  %p
-    = simple_format @question.description
-  %p
-    asked by
-    = @question.user.full_name
-  = render "votes/vote_buttons", content: @question
-  - if @question.user == current_user
-    = link_to "Edit question", edit_question_url(@question)
+  = render "questions/question_content", question: @question
+
   - unless @question.answers.where(user_id: current_user.id).exists?
     = render "answers/new", question: @question, answer: Answer.new
   - else
