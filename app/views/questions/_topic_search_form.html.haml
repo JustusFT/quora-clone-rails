@@ -1,4 +1,4 @@
-%a.topic-label{"data-target" => "#edit-topics-modal", "data-toggle" => "modal", :type => "button"}
+%a#show-topic-form.topic-label{"data-target" => "#edit-topics-modal", "data-toggle" => "modal", :type => "button"}
   %span.glyphicon.glyphicon-pencil{"aria-hidden" => "true"}
 
 #edit-topics-modal.modal{"aria-labelledby" => "edit-topics-modal-label", :role => "dialog", :tabindex => "-1"}
@@ -9,6 +9,7 @@
           %span{"aria-hidden" => "true"} &#215;
         %h4#edit-topics-modal-label.modal-title Edit topics
       .modal-body
+        %label.sr-only{:for => "topic-search-form"} Search topics
         %input#topic-search-form.form-control{:type => "text"}
         .container-fluid{:style => "position:relative"}
           #topic-search-results.list-group{:style => "display:none;position:absolute;left:0;right:0;max-height:320px;overflow-y:scroll"}
