@@ -1,7 +1,9 @@
+require 'rails_helper'
+
 describe "managing a question's topics", type: :feature do
-  let!(:user) { FactoryGirl.create(:user) }
-  let!(:question) { FactoryGirl.create(:question) }
-  let!(:topic) { FactoryGirl.create(:topic) }
+  let!(:user) { create(:user) }
+  let!(:question) { create(:question) }
+  let!(:topic) { create(:topic) }
 
   before(:each) do
     sign_in user

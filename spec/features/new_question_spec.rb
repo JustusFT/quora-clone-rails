@@ -1,3 +1,5 @@
+require 'rails_helper'
+
 describe "submitting a question", type: :feature do
   context "user signed out" do
     it "will redirect to sign in page" do
@@ -8,7 +10,7 @@ describe "submitting a question", type: :feature do
 
   context "user signed in" do
     it "can submit question" do
-      user = FactoryGirl.create(:user)
+      user = create(:user)
       sign_in user
       visit new_question_url
       question = Faker::Lorem.sentence

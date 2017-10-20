@@ -1,7 +1,9 @@
+require 'rails_helper'
+
 describe "submitting an answer", type: :feature do
   context "user signed out" do
     it "will redirect to sign in page" do
-      question = FactoryGirl.create(:question)
+      question = create(:question)
       visit question_url(question)
       expect(page).to have_current_path(new_user_session_path)
     end
@@ -9,9 +11,9 @@ describe "submitting an answer", type: :feature do
 
   context "user signed in" do
     it "can submit answer" do
-      user = FactoryGirl.create(:user)
+      user = create(:user)
       sign_in user
-      question = FactoryGirl.create(:question)
+      question = create(:question)
       visit question_url(question)
       answer = Faker::Lorem.paragraph
       within("#new_answer") do
@@ -22,9 +24,9 @@ describe "submitting an answer", type: :feature do
     end
 
     it "cannot submit 2 answers" do
-      user = FactoryGirl.create(:user)
+      user = create(:user)
       sign_in user
-      question = FactoryGirl.create(:question)
+      question = create(:question)
       visit question_url(question)
       answer = Faker::Lorem.paragraph
       within("#new_answer") do

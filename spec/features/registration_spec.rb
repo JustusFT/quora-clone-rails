@@ -1,3 +1,5 @@
+require 'rails_helper'
+
 describe "the registration process", type: :feature do
   it "signs me in" do
     visit new_user_registration_url

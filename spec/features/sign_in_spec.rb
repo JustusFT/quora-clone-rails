@@ -1,3 +1,5 @@
+require 'rails_helper'
+
 describe "the sign in process", type: :feature do
   let!(:user) { create(:user, password: "password") }
 
