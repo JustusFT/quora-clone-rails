@@ -5,7 +5,6 @@ class VotesController < ApplicationController
     @vote.user_id = helpers.current_user.id
 
     user_votes = @votable.votes.where(user_id: helpers.current_user.id)
-
     user_votes.first.destroy if user_votes.exists?
 
     if @vote.save
