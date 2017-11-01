@@ -8,11 +8,11 @@ $(document).on 'turbolinks:load', ->
     $(elem).next().find('.comment').slideUp()
     return
 
-  $('.toggle-comments').click ->
+  $('#answers').on 'click', '.toggle-comments', ->
     hideComments this
     return
 
-  $('.toggle-comment').click ->
+  $('#answers').on 'click', '.toggle-comment', ->
     hideComments this
     return
   return

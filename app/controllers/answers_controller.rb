@@ -1,4 +1,8 @@
 class AnswersController < ApplicationController
+  before_action do
+    sleep 2
+  end
+
   def create
     @question = Question.find(params[:question_id])
     @answer = @question.answers.new(answer_params)
@@ -10,7 +14,10 @@ class AnswersController < ApplicationController
       flash[:warning] = "Failed to create answer"
     end
 
-    redirect_to @question
+    respond_to do |format|
+      format.js
+      format.html { redirect_to @question }
+    end
   end
 
   def update
@@ -23,7 +30,10 @@ class AnswersController < ApplicationController
       flash[:warning] = "Failed to update answer"
     end
 
-    redirect_to @answer.question
+    respond_to do |format|
+      format.js
+      format.html { redirect_to @question }
+    end
   end
 
   def destroy
@@ -35,7 +45,10 @@ class AnswersController < ApplicationController
       flash[:warning] = "Failed to delete answer"
     end
 
-    redirect_to @answer.question
+    respond_to do |format|
+      format.js
+      format.html { redirect_to @question }
+    end
   end
 
   private

@@ -6,11 +6,11 @@
   .forms
     - if answer.user == current_user
       = render "answers/edit", answer: answer
-  .buttons
+  %fieldset.buttons
     = render "votes/vote_buttons", content: answer
     - if answer.user == current_user
       %button.btn.btn-default.show-edit-form Edit
-      = link_to "Delete", answer, method: :delete, class: "btn btn-default", data: { confirm: "Are you sure?" }
+      = button_to "Delete", answer, method: :delete, remote: true, form_class: "delete-form", class: "btn btn-default", data: { confirm: "Are you sure?" }
   %button.btn.btn-default.toggle-comments Show Comments
   .comments
     = render "comments/new_form", answer: answer

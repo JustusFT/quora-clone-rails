@@ -8,16 +8,15 @@
 
   = render "questions/question_content", question: @question
 
-  - unless @question.answers.where(user_id: current_user.id).exists?
-    = render "answers/new", question: @question, answer: Answer.new
-  - else
-    %h3 Your answer
-    = render "answers/answer", answer: @question.answers.where(user_id: current_user.id).first
-  %h3
-    = @question.answers.where.not(user_id: current_user.id).count
-    Answers
-  - @question.answers.where.not(user_id: current_user.id).each do |answer|
-    = render "answers/answer", answer: answer
+  #answers
+    #current-user-answer
+      = render 'questions/current_user_answer', question: @question
+    %h3
+      = @question.answers.where.not(user_id: current_user.id).count
+      Answers
+    - @question.answers.where.not(user_id: current_user.id).each do |answer|
+      = render "answers/answer", answer: answer
+
 .col-md-4
   .related-questions
     %h4 Related Questions

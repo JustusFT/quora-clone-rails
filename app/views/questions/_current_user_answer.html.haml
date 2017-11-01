@@ -1,0 +1,6 @@
+- unless question.answers.where(user_id: current_user.id).exists?
+  %h3 Answer
+  = render "answers/new", question: question, answer: Answer.new
+- else
+  %h3 Your answer
+  = render "answers/answer", answer: question.answers.where(user_id: current_user.id).first

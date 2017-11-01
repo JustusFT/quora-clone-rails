@@ -1,6 +1,7 @@
-= form_for [question, answer] do |f|
-  = f.label :answer, class: "sr-only"
-  .input-group
-    = f.text_area :answer, class: "form-control"
-    %span.input-group-btn
-      = f.submit "Answer", class: "btn btn-primary"
+= form_for [question, answer], remote: true do |f|
+  %fieldset
+    = f.label :answer, class: "sr-only"
+    .input-group
+      = f.text_area :answer, class: "form-control"
+      %span.input-group-btn
+        = f.submit "Answer", class: "btn btn-primary"

@@ -1,6 +1,7 @@
-= form_for answer, html: { class: "edit-form" } do |f|
-  .input-group
-    = f.text_area :answer, class: "form-control"
-    %span.input-group-btn
-      = f.submit "Update", class: "btn btn-primary"
-  .btn.btn-default.hide-edit-form Discard Changes
+= form_for answer, remote: true, html: { class: "edit-form" } do |f|
+  %fieldset
+    .input-group
+      = f.text_area :answer, class: "form-control"
+      %span.input-group-btn
+        = f.submit "Update", class: "btn btn-primary"
+    .btn.btn-default.hide-edit-form Discard Changes
