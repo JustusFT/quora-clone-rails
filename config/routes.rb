@@ -25,7 +25,7 @@ Rails.application.routes.draw do
 
   resources :votes, only: [:destroy]
 
-  resources :topics, only: [:show] do
+  resources :topics, only: [:create, :show] do
     post :follow
     delete :unfollow
   end

@@ -1,4 +1,16 @@
 class TopicsController < ApplicationController
+  def create
+    @topic = Topic.new(topic_params)
+
+    if @topic.save
+      flash[:success] = "Topic created successfully"
+      redirect_to @topic
+    else
+      flash[:danger] = "Failed to follow topic"
+      redirect_to "/"
+    end
+  end
+
   def show
     @topic = Topic.find(params[:id])
   end
@@ -26,5 +38,11 @@ class TopicsController < ApplicationController
       flash[:danger] = "Failed to unfollow topic"
     end
     redirect_to @topic
+  end
+
+  private
+
+  def topic_params
+    params.require(:topic).permit(:name, :description)
   end
 end

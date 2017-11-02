@@ -1,9 +1,11 @@
 let results = <%= raw @results.to_json %>
 $('#topic-search-results').empty();
 <% if @results.empty? %>
-  for(let i = 0; i < 50; i++) {
-    $('#topic-search-results').append('<a href="javascript: void(0)" class="list-group-item">TODO add topic</a>')
-  }
+  $('#topic-search-results').append(
+    '<%= link_to(topics_url(topic: { name: params[:q] }), method: :post, class: "list-group-item") do %>' +
+      'Create new topic' +
+    '<% end %>'
+  );
 <% else %>
   <% @results.each do |result| %>
     $('#topic-search-results').append(
