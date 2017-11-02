@@ -20,7 +20,8 @@
             %ul.dropdown-menu
               %li
                 = link_to "Sign out", destroy_user_session_url, method: :delete
-          = link_to "Ask Question", new_question_path, class: "btn btn-ask navbar-btn"
+          %button.btn.btn-ask.navbar-btn{"data-toggle" => "modal", "data-target" => "#new-question-modal"}
+            Ask Question
         - else
           %li
             = link_to "Sign in", new_user_session_url

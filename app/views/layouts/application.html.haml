@@ -8,6 +8,7 @@
     = yield :style
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body
+    = render "shared/new_question_modal"
     #content.container
       = render "shared/navbar"
       - flash.each do |key, value|
