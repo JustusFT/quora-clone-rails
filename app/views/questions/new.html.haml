@@ -1,9 +1,12 @@
-= form_for @question do |f|
-  %div
-    = f.label :question
-    = f.text_field :question
-  %div
-    = f.label :description
-    = f.text_area :description
-  %div
-    = f.submit
+= form_for @question, html: { class: "form-horizontal" } do |f|
+  .form-group
+    = f.label :question, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.text_field :question, class: "form-control"
+  .form-group
+    = f.label :description, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.text_area :description, class: "form-control"
+  .form-group
+    .col-sm-offset-2.col-sm-10
+      = f.submit class: "btn btn-default"
