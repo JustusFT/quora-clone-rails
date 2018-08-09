@@ -3,7 +3,7 @@ require 'rails_helper'
 describe "the registration process", type: :feature do
   it "signs me in" do
     visit new_user_registration_url
-    within("form") do
+    within('[data-test-id="registration-form"]') do
       fill_in "Full name", with: "John Doe"
       fill_in "Email", with: "email@example.com"
       fill_in "Password", with: "password"

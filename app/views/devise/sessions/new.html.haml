@@ -1,5 +1,5 @@
 %h2 Log in
-= form_for(resource, html: { class: "form-horizontal" }, as: resource_name, url: session_path(resource_name)) do |f|
+= form_for(resource, html: { class: "form-horizontal", "data-test-id": "sign-in-form" }, as: resource_name, url: session_path(resource_name)) do |f|
   .form-group
     = f.label :email, class: "col-sm-2 control-label"
     .col-sm-10
