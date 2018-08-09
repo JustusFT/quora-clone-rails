@@ -76,6 +76,13 @@ RSpec.describe QuestionsController, type: :controller do
           post :create, params: { question: attributes_for(:invalid_question) }
         }.not_to change(Question, :count)
       end
+
+      it "redirects back to the user's current page on invalid submit" do
+        http_referer = "https://example.com"
+        request.env['HTTP_REFERER'] = http_referer
+        post :create, params: { question: attributes_for(:invalid_question) }
+        expect(response).to redirect_to(http_referer)
+      end
     end
 
     context "when signed out" do

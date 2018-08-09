@@ -60,7 +60,7 @@ class QuestionsController < ApplicationController
       redirect_to @question
     else
       flash[:warning] = "Failed to create question"
-      render :new
+      redirect_back(fallback_location: root_path)
     end
   end
 
