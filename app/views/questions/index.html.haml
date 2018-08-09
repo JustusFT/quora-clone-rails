@@ -24,7 +24,8 @@
     - else
       %div= current_user.full_name
       %h4
-        = link_to "What is your question?", new_question_path, class: "ask-question-link"
+        %a.ask-question-link{data: {"test-id": "questions-index-ask-question-link", toggle: "modal", target: "#new-question-modal"}}
+          What is your question?
   - @questions.each do |question|
     .feed-item
       = render "questions/item", question: question

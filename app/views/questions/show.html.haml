@@ -1,26 +1,27 @@
-.col-md-8
-  %h4
-    %span Topics:
+%div{data: {"test-id": "question-page"}}
+  .col-md-8
+    %h4
+      %span Topics:
 
-  = render "questions/topics_list", question: @question
+    = render "questions/topics_list", question: @question
 
-  = render "questions/topic_search_form", question: @question
+    = render "questions/topic_search_form", question: @question
 
-  = render "questions/question_content", question: @question
+    = render "questions/question_content", question: @question
 
-  #answers
-    #current-user-answer
-      = render 'questions/current_user_answer', question: @question
-    %h3
-      = @question.answers.where.not(user_id: current_user.id).count
-      Answers
-    - @question.answers.where.not(user_id: current_user.id).each do |answer|
-      = render "answers/answer", answer: answer
+    #answers
+      #current-user-answer
+        = render 'questions/current_user_answer', question: @question
+      %h3
+        = @question.answers.where.not(user_id: current_user.id).count
+        Answers
+      - @question.answers.where.not(user_id: current_user.id).each do |answer|
+        = render "answers/answer", answer: answer
 
-.col-md-4
-  .related-questions
-    %h4 Related Questions
-    %hr
-    - Question.topic(@question.topics.pluck(:id)).limit(20).each do |question|
-      .related-question
-        = link_to question.question, question
+  .col-md-4
+    .related-questions
+      %h4 Related Questions
+      %hr
+      - Question.topic(@question.topics.pluck(:id)).limit(20).each do |question|
+        .related-question
+          = link_to question.question, question
