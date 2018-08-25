@@ -4,7 +4,7 @@
   asked by
   = question.user.full_name
 %p
-  - answer = question.answers.last
+  - answer = question.answers.first
   - if answer
     %h5= answer.user.full_name
     %p= answer.answer

@@ -43,7 +43,7 @@ class QuestionsController < ApplicationController
   end
 
   def index
-    @questions = Question.page(params[:page] || 1)
+    @questions = Question.includes(:votes, :user, :topics, answers: [:user]).page(params[:page] || 1)
     @questions = @questions.topic(params[:topic_id]) if params[:topic_id]
   end
 
