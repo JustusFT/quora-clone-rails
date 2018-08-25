@@ -10,7 +10,7 @@
     = render "votes/vote_buttons", content: answer
     - if answer.user == current_user
       %button.btn.btn-default.show-edit-form Edit
-      = button_to "Delete", answer, method: :delete, remote: true, form_class: "delete-form", class: "btn btn-default", data: { confirm: "Are you sure?" }
+      = button_to "Delete", answer, method: :delete, remote: true, form_class: "delete-form", class: "btn btn-danger", data: { confirm: "Are you sure?" }
   %button.btn.btn-default.toggle-comments Show Comments
   .comments
     = render "comments/new_form", answer: answer

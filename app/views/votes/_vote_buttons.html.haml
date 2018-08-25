@@ -1,4 +1,4 @@
-.vote-buttons{:id => "#{content.class.name.downcase}_#{content.id}_vote_buttons"}
+%span.vote-buttons{:id => "#{content.class.name.downcase}_#{content.id}_vote_buttons"}
   - unless has_vote?(content, "upvote")
     = link_to "Upvote | #{content.score}", content_votes_url(content, vote: { vote_type: "upvote" }), method: :post, class: "btn btn-blue", remote: true
   - else
