@@ -5,6 +5,7 @@
 $(document).on 'turbolinks:load', ->
   hideComments = (elem) ->
     $(elem).next().slideToggle()
+    $(elem).find(".glyphicon").toggleClass("glyphicon-chevron-right glyphicon-chevron-down")
     $(elem).next().find('.comment').slideUp()
     return
 
