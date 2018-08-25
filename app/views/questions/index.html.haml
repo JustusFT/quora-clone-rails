@@ -1,6 +1,6 @@
 = content_for :style do
   = stylesheet_link_tag 'index_page', 'data-turbolinks-track': 'reload'
--#.col-md-2
+.col-md-2
   %h4 Feeds
   %hr
   .list-group
@@ -10,7 +10,7 @@
       = link_to topic.name, questions_url(topic_id: topic.id), class: "list-group-item"
 .col-md-8
   .feed-item
-    -#- if params[:topic_id].is_a?(String)
+    - if params[:topic_id].is_a?(String)
       - topic = Topic.find(params[:topic_id])
       .media
         .media-left.media-middle
@@ -21,7 +21,7 @@
       %p= topic.description
       %div
         = render "topics/follow_button", topic: topic
-    -#- else
+    - else
       %div= current_user.full_name
       %h4
         %a.ask-question-link{data: {"test-id": "questions-index-ask-question-link", toggle: "modal", target: "#new-question-modal"}}
