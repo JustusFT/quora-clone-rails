@@ -60,7 +60,7 @@ rails s
 
 The server should now be open on `localhost:3000`
 
-### Testing
+# Testing
 
 Run the specs with
 
